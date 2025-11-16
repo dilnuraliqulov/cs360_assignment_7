@@ -1,17 +1,23 @@
 // @ts-check
 
-import eslint from '@eslint/js';
-import { defineConfig } from 'eslint/config';
-import tseslint from 'typescript-eslint';
+import eslint from "@eslint/js";
+import tseslint from "typescript-eslint";
+import { defineConfig } from "eslint/config";
 
-export default defineConfig({
-  extends: [
-    eslint.configs.recommended,
-    ...tseslint.configs.recommended
-  ],
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
+export default defineConfig([
+  // JS recommended rules
+  eslint.configs.recommended,
+
+  // TS ESLint recommended rules
+  ...tseslint.configs.recommended,
+
+  // Custom config for TS files
+  {
+    files: ["**/*.ts"],
+    languageOptions: {
+      parser: tseslint.parser,
+      ecmaVersion: "latest",
+      sourceType: "module",
+    }
   }
-});
+]);
