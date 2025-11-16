@@ -6,6 +6,7 @@ describe('Testing addStudent() method', () => {
     db.initialize();
   });
 
+
   it('should create 4 dummy students when you call initialize()', () => {
     let transcripts = db.getAll();
     expect(transcripts.length).toBe(4);
